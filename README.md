@@ -49,3 +49,6 @@ And then follow the CLI prompts to manage users.
 Notes:
  * New users seems to be available only after pyLoad restart (Top right corner > Administrate > Restart pyLoad)
  * Don't forget to leave the user management script with choice 4 (Quit) or users won't be added
+
+#### Downloads folder
+The default folder for downloads is `/pyload/downloads`and must stay like that. If you need to change the destination folder for downloads, only change the volume mapping when creating the container (ex: `$ docker create --name pyLoad -v <NEW FOLDER>:/pyload/downloads ...`)
