@@ -1,0 +1,26 @@
+#!/bin/bash
+umask 0002
+
+#Checking if config files exists (if not, copy default ones)
+if [ ! -f /pyload/config/files.db ]
+then
+  cp /tmp/config/files.db /pyload/config/files.db
+fi
+if [ ! -f /pyload/config/files.version ]
+then
+  cp /tmp/config/files.version /pyload/config/files.version
+fi
+if [ ! -f /pyload/config/plugin.conf ]
+then
+  cp /tmp/config/plugin.conf /pyload/config/plugin.conf
+fi
+if [ ! -f /pyload/config/pyload.conf ]
+then
+  cp /tmp/config/pyload.conf /pyload/config/pyload.conf
+fi
+
+#Changing rights if needed
+chown -v abc:abc -R /pyload
+
+#Starting pyload
+exec /sbin/setuser abc /usr/bin/python /pyload/pyLoadCore.py
