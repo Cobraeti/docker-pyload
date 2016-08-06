@@ -36,7 +36,7 @@ The default port for webUI is 8000 and must stay like that. If you need to use a
 
 You can (and should ^^) change the password through the webUI (Top right corner > Administrate > User > change).
 
-If you want to manage users, you need to run the following command on the docker host:
+If you want to create users, you need to run the following command on the docker host:
 ```shellsession
 $ docker exec -it pyLoad bash
 ```
