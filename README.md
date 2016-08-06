@@ -45,6 +45,7 @@ When you get the container's promp (something like `root@263c2ec0c11a:/#`), run 
 # sudo -u abc -g abc /usr/bin/python /pyload/pyLoadCore.py -u
 ```
 And then follow the CLI prompts to manage users.
+
 Notes:
  * New users seems to be available only after pyLoad restart (Top right corner > Administrate > Restart pyLoad)
  * Don't forget to leave the user management script with choice 4 (Quit) or users won't be added
