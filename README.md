@@ -31,7 +31,7 @@ From LinuxServer.io description:
 The default port for webUI is 8000 and must stay like that. If you need to use another one, only change the port mapping when creating the container (ex: `$ docker create --name pyLoad -p <NEW PORT>:8000 ...`)
 
 #### WebUI user
- * Default login: `USER`
+ * Default login: `User`
  * Default password: `pyload`
 
 You can (and should ^^) change the password through the webUI (Top right corner > Administrate > User > change).
