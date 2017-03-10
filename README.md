@@ -1,5 +1,6 @@
 # docker-pyload
-A docker container based on [linuxserver](https://github.com/linuxserver "LinuxServer.io repositories")/[baseimage](https://github.com/linuxserver/docker-baseimage "docker-baseimage repository") and running [pyLoad](https://github.com/pyload/pyload "pyLoad repository")
+A docker container based on [linuxserver](https://github.com/linuxserver "LinuxServer.io repositories")/[baseimage](https://github.com/linuxserver/docker-baseimage "docker-baseimage repository") and running [pyLoad](https://github.com/pyload/pyload "pyLoad repository")  
+Installation procedure adapted from [obi12341](https://github.com/obi12341 "obi12341 repositories")/[docker-pyload](https://github.com/obi12341/docker-pyload "docker-pyload repository")
 
 ## Usage
 ```shell
