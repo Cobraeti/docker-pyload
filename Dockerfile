@@ -22,6 +22,10 @@ RUN echo "/opt/pyload/pyload-config" > /opt/pyload/module/config/configdir
 
 #Adding default config files
 ADD config/ /tmp/pyload-config
+ADD services/ /etc/service/
+
+#Changing rights
+RUN chmod -v 0755 /etc/service/* /etc/service/*/run
 
 #Exposing ports and volumes
 VOLUME /opt/pyload/pyload-config
