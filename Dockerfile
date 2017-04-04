@@ -5,7 +5,7 @@ MAINTAINER Etienne Blondelle <etienneblondelle@gmail.com>
 RUN echo "deb http://archive.ubuntu.com/ubuntu/ trusty-security multiverse" >> /etc/apt/sources.list \
         && echo "deb-src http://archive.ubuntu.com/ubuntu/ trusty-security multiverse" >> /etc/apt/sources.list \
         && cat /etc/apt/sources.list \
-        && apt-get update
+        && apt-get update \
         && apt-get install -y python \
                 python-pycurl \
                 python-crypto \
