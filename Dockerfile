@@ -17,7 +17,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ trusty-security multiverse" >> /
                 python-django \
                 git \
                 rhino \
-        && git clone https://github.com/mariusbaumann/pyload.git /opt/pyload \
+        && git clone -b stable https://github.com/pyload/pyload.git /opt/pyload \
         && echo "/opt/pyload/pyload-config" > /opt/pyload/module/config/configdir \
         && apt-get purge -y git \
         && apt-get autoremove -y \

@@ -2,7 +2,7 @@
 umask 0002
 
 #Checking if config files exists (if not, copy default ones)
-if [ ! -f "/opt/pyload/pyload-config/setup.lock" ]
+if  [ ! -f "/opt/pyload/pyload-config/files.db" ] || [ ! -f "/opt/pyload/pyload-config/files.version" ] || [ ! -f "/opt/pyload/pyload-config/plugin.conf" ] || [ ! -f "/opt/pyload/pyload-config/pyload.conf" ]
 then
         mkdir -p /opt/pyload/pyload-config
         chmod 777 /opt/pyload/pyload-config
@@ -12,7 +12,7 @@ fi
 
 if [ -f "/opt/pyload/pyload-config/pyload.pid" ]
 then
-        rm /opt/pyload/pyload-config/pyload.pid
+        rm -f /opt/pyload/pyload-config/pyload.pid
 fi
 
 #Changing rights if needed
