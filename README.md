@@ -8,8 +8,8 @@ $ docker create \
   --name pyLoad \
   -p 8000:8000 \
   -e PUID=<UID> -e PGID=<GID> \
+  -e TZ=<YourRegion>/<YourCapital> \
   -v </path/to/your/downloads>:/opt/pyload/Downloads \
-  -v /etc/localtime:/etc/localtime:ro \
   cobraeti/docker-pyload
 ```
 
@@ -19,6 +19,7 @@ $ docker create \
  * -v /etc/localtime:/etc/localtime:ro - Share of the host localtime (optionnal)
  * -e PUID=<UID> for UserID - see below for explanation
  * -e PGID=<GID> for GroupID - see below for explanation
+ * -e TZ=<YourRegion>/<YourCapital> for timezone information - eg Europe/Paris
 
 ### User / Group Identifiers
 From LinuxServer.io description:
@@ -30,7 +31,7 @@ From LinuxServer.io description:
 The default port for webUI is 8000 and must stay like that. If you need to use another one, only change the port mapping when creating the container (ex: `$ docker create --name pyLoad -p <NEW PORT>:8000 ...`)
 
 #### WebUI user
- * Default login: `pyload`
+ * Default login: `admin`
  * Default password: `pyload`
 
 You can (and should ^^) change the password through the webUI (Top right corner > Administrate > User > change).
@@ -51,3 +52,6 @@ Notes:
 
 #### Downloads folder
 The default folder for downloads is `/opt/pyload/Downloads`and must stay like that. If you need to change the destination folder for downloads, only change the volume mapping when creating the container (ex: `$ docker create --name pyLoad -v <NEW FOLDER>:/pyload/downloads ...`)
+
+#### Remote control
+If you are planning to activate this option, just add a port mapping for the dedicated port with `-p 7227:7227` and when pyload is up, just activate the remote control in the dedicated config menu (Top right corner > Config tab > General tab > Menu tab > Remote > Activated > on)
