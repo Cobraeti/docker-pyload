@@ -10,7 +10,7 @@ $ docker create \
   -e PUID=<UID> -e PGID=<GID> \
   -e TZ=<YourRegion>/<YourCapital> \
   -v </path/to/your/downloads>:/opt/pyload/Downloads \
-  cobraeti/docker-pyload
+  cobraeti/pyload
 ```
 
 ### Parameters
