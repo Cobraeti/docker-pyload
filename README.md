@@ -9,21 +9,23 @@ $ docker create \
   -p 8000:8000 \
   -e PUID=<UID> -e PGID=<GID> \
   -e TZ=<YourRegion>/<YourCapital> \
-  -v </path/to/your/downloads>:/opt/pyload/Downloads \
+  -v </path/to/your/downloads>:/downloads \
+  -v </path/to/your/configs>:/config \
   cobraeti/pyload
 ```
 
 ### Parameters
- * -p 8000:8000 - the webUI port mapping
- * -v </path/to/your/downloads>:/opt/pyload/Downloads - path to your downloads folder
+ * -p 8000:8000 - The webUI port mapping
+ * -v </path/to/your/downloads>:/downloads - Path to your downloads folder
+ * -v </path/to/your/configs>:/config - Path to your configs folder (recommended for persisting config)
  * -v /etc/localtime:/etc/localtime:ro - Share of the host localtime (optionnal)
- * -e PUID=<UID> for UserID - see below for explanation
- * -e PGID=<GID> for GroupID - see below for explanation
+ * -e PUID=<UID> for UserID - See below for explanation
+ * -e PGID=<GID> for GroupID - See below for explanation
  * -e TZ=<YourRegion>/<YourCapital> for timezone information - eg Europe/Paris
 
 ### User / Group Identifiers
 From LinuxServer.io description:
-> TL;DR - The PGID and PUID values set the user / group you'd like your container to 'run as' to the host OS. This can be a user you've created or even root (not recommended).
+> The PGID and PUID values set the user / group you'd like your container to 'run as' to the host OS. This can be a user you've created or even root (not recommended).
 > Part of what makes our containers work so well is by allowing you to specify your own PUID and PGID. This avoids nasty permissions errors with relation to data volumes (-v flags). When an application is installed on the host OS it is normally added to the common group called users, Docker apps due to the nature of the technology can't be added to this group. So we added this feature to let you easily choose when running your containers.
 
 ### Default configs
@@ -34,7 +36,7 @@ The default port for webUI is 8000 and must stay like that. If you need to use a
  * Default login: `admin`
  * Default password: `pyload`
 
-You can (and should ^^) change the password through the webUI (Top right corner > Administrate > User > change).
+You can (and should :yum:) change the password through the webUI (Top right corner > Administrate > User > change).
 
 If you want to create users, you need to run the following command on the docker host:
 ```shellsession
@@ -51,7 +53,10 @@ Notes:
  * Don't forget to leave the user management script with choice 4 (Quit) or users won't be added
 
 #### Downloads folder
-The default folder for downloads is `/opt/pyload/Downloads`and must stay like that. If you need to change the destination folder for downloads, only change the volume mapping when creating the container (ex: `$ docker create --name pyLoad -v <NEW FOLDER>:/pyload/downloads ...`)
+The default folder for downloads is `/downloads`and must stay like that. If you need to change the destination folder for downloads, only change the volume mapping when creating the container (eg: `$ docker create --name pyLoad -v <NEW FOLDER>:/downloads ...`)
 
 #### Remote control
 If you are planning to activate this option, just add a port mapping for the dedicated port with `-p 7227:7227` and when pyload is up, just activate the remote control in the dedicated config menu (Top right corner > Config tab > General tab > Menu tab > Remote > Activated > on)
+
+#### SSL
+The container was packed with all requirements (obviously except for GUI...), so you just have to add a volume mapping to a folder containing your certificate and key with `-v </path/to/your/ssl/folder>:/ssl` and configure SSL in the dedicated config menu (Top right corner > Config tab > General tab > Menu tab > SSL)

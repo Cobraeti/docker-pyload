@@ -1,6 +1,10 @@
 FROM linuxserver/baseimage
 MAINTAINER Etienne Blondelle <etienneblondelle@gmail.com>
 
+#Exposing ports and volumes
+VOLUME ["/downloads", "/config"]
+EXPOSE 8000
+
 #Installing pyLoad
 RUN echo "deb http://archive.ubuntu.com/ubuntu/ trusty-security multiverse" >> /etc/apt/sources.list \
         && echo "deb-src http://archive.ubuntu.com/ubuntu/ trusty-security multiverse" >> /etc/apt/sources.list \
@@ -9,6 +13,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ trusty-security multiverse" >> /
         && apt-get install -y python \
                 python-pycurl \
                 python-crypto \
+                python-openssl \
                 tesseract-ocr \
                 python-beaker \
                 python-imaging \
@@ -18,10 +23,11 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ trusty-security multiverse" >> /
                 git \
                 rhino \
         && git clone -b stable https://github.com/pyload/pyload.git /opt/pyload \
-        && echo "/opt/pyload/pyload-config" > /opt/pyload/module/config/configdir \
+        && echo "/config" > /opt/pyload/module/config/configdir \
         && apt-get purge -y git \
         && apt-get autoremove -y \
-        && apt-get clean -y
+        && apt-get clean -y \
+        && chown abc:abc -R /opt/pyload
 
 #Adding default config files
 ADD config/ /tmp/pyload-config
@@ -29,7 +35,3 @@ ADD services/ /etc/service/
 
 #Changing rights
 RUN chmod -v 0755 /etc/service/* /etc/service/*/run
-
-#Exposing ports and volumes
-VOLUME /opt/pyload/Downloads
-EXPOSE 8000

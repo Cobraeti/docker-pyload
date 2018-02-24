@@ -2,21 +2,22 @@
 umask 0002
 
 #Checking if config files exists (if not, copy default ones)
-if  [ ! -f "/opt/pyload/pyload-config/files.db" ] || [ ! -f "/opt/pyload/pyload-config/files.version" ] || [ ! -f "/opt/pyload/pyload-config/plugin.conf" ] || [ ! -f "/opt/pyload/pyload-config/pyload.conf" ]
+if  [ ! -f "/config/files.db" ] || [ ! -f "/config/files.version" ] || [ ! -f "/config/plugin.conf" ] || [ ! -f "/config/pyload.conf" ]
 then
-        mkdir -p /opt/pyload/pyload-config
-        chmod 777 /opt/pyload/pyload-config
+        mkdir -p /config
+        chmod 777 /config
 
-        mv /tmp/pyload-config/* /opt/pyload/pyload-config/
+        mv /tmp/pyload-config/* /config/
 fi
 
-if [ -f "/opt/pyload/pyload-config/pyload.pid" ]
+if [ -f "/config/pyload.pid" ]
 then
-        rm -f /opt/pyload/pyload-config/pyload.pid
+        rm -f /config/pyload.pid
 fi
 
 #Changing rights if needed
 chown -v abc:abc -R /opt/pyload
+chown -v abc:abc -R /config
 
 #Starting pyload
 exec /sbin/setuser abc /usr/bin/python /opt/pyload/pyLoadCore.py
